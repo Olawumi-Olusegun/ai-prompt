@@ -10,7 +10,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
 import { useUser } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const PromptDetailsCard = ({
   promptData,
@@ -23,6 +23,8 @@ const PromptDetailsCard = ({
 }) => {
   const { user } = useUser();
 
+  const router = useRouter();
+
   const [activeImage, setActiveImage] = useState(promptData?.images[0]?.url);
   const [open, setOpen] = useState(false);
 
@@ -30,8 +32,12 @@ const PromptDetailsCard = ({
     .split(",")
     .map((tag: string) => tag.trim());
 
-  if (!user || !user?.id) {
-    return redirect("/sign-in");
+  if (!user || !user.id) {
+    useEffect(() => {
+      router.push("/sign-in");
+    }, []);
+
+    return null;
   }
 
   useEffect(() => {
@@ -45,7 +51,7 @@ const PromptDetailsCard = ({
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [open]);
+  }, [open, user]);
 
   return (
     <>
@@ -159,7 +165,7 @@ const PromptDetailsCard = ({
                     open={open}
                     setOpen={setOpen}
                     promptData={promptData}
-                    userId={user.id}
+                    userId={user?.id}
                   />
                 </Elements>
               )}
