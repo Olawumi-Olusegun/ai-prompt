@@ -1,15 +1,15 @@
 "use server"
 import prismadb from "@/lib/prismaDb";
-import { auth } from "@clerk/nextjs/server"
+import { currentUser, User } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation";
 
 export const getPromptById = async (promptId: string) => {
 
     try {
 
-        const { userId: currentUserId } = auth()
+        const user: User | null = await currentUser();
 
-        if(!currentUserId ) {
+        if(!user || !user?.id ) {
             return redirect("/sign-in")
         }
 
