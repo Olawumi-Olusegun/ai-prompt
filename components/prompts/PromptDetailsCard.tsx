@@ -32,13 +32,12 @@ const PromptDetailsCard = ({
     .split(",")
     .map((tag: string) => tag.trim());
 
-  if (!user || !user.id) {
-    useEffect(() => {
+  useEffect(() => {
+    if (!user || !user?.id) {
       router.push("/sign-in");
-    }, []);
-
-    return null;
-  }
+      return;
+    }
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -51,7 +50,11 @@ const PromptDetailsCard = ({
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [open, user]);
+  }, [open]);
+
+  if (!user || !user?.id) {
+    return null;
+  }
 
   return (
     <>
