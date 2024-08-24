@@ -32,12 +32,12 @@ const PromptDetailsCard = ({
     .split(",")
     .map((tag: string) => tag.trim());
 
-  useEffect(() => {
-    if (!user || !user?.id) {
-      router.push("/sign-in");
-      return;
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!user || !user?.id) {
+  //     router.push("/sign-in");
+  //     return;
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
