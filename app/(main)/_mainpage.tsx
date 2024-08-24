@@ -28,7 +28,7 @@ function Mainpage({ user, isSellerExist, promptsData }: Props) {
     if (!mounted) {
       setMounted(true);
     }
-  }, []);
+  }, [mounted]);
 
   if (!mounted) {
     return null;

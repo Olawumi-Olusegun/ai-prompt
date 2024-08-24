@@ -34,7 +34,7 @@ const PromptDetailsPage = ({
     if (!isMounted) {
       setIsMounted(true);
     }
-  }, []);
+  }, [isMounted]);
 
   useEffect(() => {
     if (publishableKey && promptData && promptData?.price) {
