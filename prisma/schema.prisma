@@ -53,7 +53,6 @@ model Orders {
   userId        String
   promptId      String   @db.ObjectId
   prompt        Prompts  @relation(fields: [promptId], references: [id])
-  promptName    String
   paymentMethod String
   paymentId     String
   createdAt     DateTime @default(now())
