@@ -31,18 +31,18 @@ const PromptDetailsPage = ({
   };
 
   useEffect(() => {
-    if (!isMounted) {
-      setIsMounted(true);
-    }
-  }, [isMounted]);
-
-  useEffect(() => {
     if (publishableKey && promptData && promptData?.price) {
       const amount = Math.round(promptData?.price * 100);
       newPaymentIntent(amount);
       setStripePromise(loadStripe(publishableKey));
     }
   }, [publishableKey, promptData]);
+
+  useEffect(() => {
+    if (!isMounted) {
+      setIsMounted(true);
+    }
+  }, [isMounted]);
 
   if (!isMounted) {
     return null;

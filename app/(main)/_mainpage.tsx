@@ -22,15 +22,15 @@ type Props = {
 };
 
 function Mainpage({ user, isSellerExist, promptsData }: Props) {
-  const [mounted, setMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    if (!mounted) {
-      setMounted(true);
+    if (!isMounted) {
+      setIsMounted(true);
     }
-  }, [mounted]);
+  }, [isMounted]);
 
-  if (!mounted) {
+  if (!isMounted) {
     return null;
   }
 
